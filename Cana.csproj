@@ -68,10 +68,15 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModels\AdaugaCanaViewModel.cs" />
+    <Compile Include="ViewModels\AdaugaProducatorViewModel.cs" />
     <Compile Include="ViewModels\CanaViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ProducatorViewModel.cs" />
     <Compile Include="Views\AdaugaCanaView.xaml.cs">
       <DependentUpon>AdaugaCanaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdaugaProducatorView.xaml.cs">
+      <DependentUpon>AdaugaProducatorView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -86,6 +91,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\AdaugaCanaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdaugaProducatorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

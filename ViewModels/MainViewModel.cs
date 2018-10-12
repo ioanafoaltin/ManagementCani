@@ -17,7 +17,7 @@ namespace Cana.ViewModels
         public DelegateCommand AdaugaCanaComand { get; private set; }
         public ObservableCollection<CanaViewModel> Cani { get; set; }
         //o proprietate, ca sa semnalizam ce e selectat
-        public CanaViewModel SelectedItem {get; set;}
+        public CanaViewModel SelectedItem { get; set; }
         public DelegateCommand DeleteCanaComand { get; set; }
         public DelegateCommand ClearComand { get; set; }
         public DelegateCommand DubleazaCanileCuAComand { get; set; }
@@ -32,6 +32,8 @@ namespace Cana.ViewModels
         public DelegateCommand CelMaiLungNumeComand { get; set; }
         public DelegateCommand NumarDeCaniCuIComand { get; set; }
         public DelegateCommand CapacitateSpalatVinComand { get; set; }
+        public DelegateCommand CeaMaiRecentaCanaDeCeaiIComand { get; set; }
+        public DelegateCommand CanileIaurtComand { get; set; }
 
 
         public MainViewModel()
@@ -52,15 +54,19 @@ namespace Cana.ViewModels
             CelMaiLungNumeComand = new DelegateCommand(CelMaiLungNumeComand_Execute);
             NumarDeCaniCuIComand = new DelegateCommand(NumarDeCaniCuIComand_Exectute);
             CapacitateSpalatVinComand = new DelegateCommand(CapacitateSpalatVinComand_Execute);
+            CeaMaiRecentaCanaDeCeaiIComand = new DelegateCommand(CeaMaiRecentaCanaDeCeaiIComand_Execute);
+            CanileIaurtComand = new DelegateCommand(CanileIaurtComand_Execute);
         }
 
 
         private void AdaugaCanaComand_Execute()
         {
+            //se construieste view modelul asta
             AdaugaCanaViewModel adaugaCanaViewModel = new AdaugaCanaViewModel();
+            //avem nevoie de asta ca sa avem acces la proprietatile din MainViewModel(in special cani)
             adaugaCanaViewModel.MainViewModel = this;
             //x=adaugaCanaViewModel
-
+            
             //am legat proprietatea okComand de metoda AdaugaCana
             adaugaCanaViewModel.OkCommand = new DelegateCommand(adaugaCanaViewModel.AdaugaCana);
 
@@ -91,7 +97,7 @@ namespace Cana.ViewModels
             Cani.Clear();
         }
 
-        
+
 
         private void DubleazaCanileCuA_Execute()
         {
@@ -158,7 +164,7 @@ namespace Cana.ViewModels
 
         private void MaiMultDeCinciComand_Execute()
         {
-            if (Cani.Count >6)
+            if (Cani.Count > 6)
             {
                 CanaViewModel CinciCani = new CanaViewModel();
                 CinciCani.Nume = "5 cani";
@@ -224,7 +230,7 @@ namespace Cana.ViewModels
                     numeleCelMaiLung = cana.Nume;
                 }
             }
-            MessageBox.Show("Cana " + numeleCelMaiLung + " are cel mai lung nume"); 
+            MessageBox.Show("Cana " + numeleCelMaiLung + " are cel mai lung nume");
         }
 
         //3. buton care da mesaj "exista x numar de cani care contin litera i"
@@ -251,8 +257,9 @@ namespace Cana.ViewModels
 
             foreach (CanaViewModel cana in Cani.ToList())
             {
-                if ((cana.Capacitate > max) && (cana.SpalaInMasina = true) )
+                if ((cana.Capacitate > max) && (cana.SpalaInMasina = true) && (cana.UtilaPentru.Contains("Vin")))
                 {
+
                     max = cana.Capacitate;
                     canaCautata = cana.Nume;
                 }
@@ -261,16 +268,65 @@ namespace Cana.ViewModels
             MessageBox.Show("Cana cu capacitatea cea mai mare care poate fi spalata la masina de tip vin fiert este " + canaCautata);
         }
 
-        // tema:
-        // NU 1. sa se adauge la cana caracteristica tip, de ales intre cafea, ceai, vin fiert, lapte, cacao, iaurt (combobox)
-        // CU INTREBARI (CAIET) 2. sa se adauge o prop numita data fabricarii (date time picker, tip de date date time)
-        // DA 3. se poate spala in masina de spalat vase? (adevarat sau fals)
-        // 4. buton - sa afiseze cana cu capacitatea cea mai mare care poate fi spalata la masina, de tip vin fiert
-        // 5. buton - sa se afiseze cana de tip ceai cu data fabricarii cea mai recenta
-        // 6. buton - sa se afiseze numele tuturor canilor de tip iaurt
-        // 7. in lista de cani - buton de stergere
-        // 8. tab producator - plus, minus, adaugat (forma de) producator va contine numele firmei, tzara si orasul de origine, telefon 
+        private void CeaMaiRecentaCanaDeCeaiIComand_Execute()
+        {
+            DateTime celMaiRecent = new DateTime(0001, 01, 01, 0, 0, 0);
+            string afisam = "";
 
+            foreach (CanaViewModel cana in Cani.ToList())
+            {
+                int rezultat = DateTime.Compare(celMaiRecent, cana.DataFabricatiei);
+                if (rezultat < 0 && (cana.UtilaPentru.Contains("Ceai")))
+                {
+                    celMaiRecent = cana.DataFabricatiei;
+                    afisam = cana.Nume;
+                }
+            }
+            MessageBox.Show("Cea mai recenta cana de ceai este: " + afisam);
+        }
+
+        private void CanileIaurtComand_Execute()
+        {
+            string canileIaurt = "";
+            string afisam = "";
+
+            foreach (CanaViewModel cana in Cani.ToList())
+            {
+                if (cana.UtilaPentru.Contains("Iaurt"))
+                {
+                    canileIaurt = cana.Nume;
+                }
+
+                afisam = afisam + canileIaurt + ", ";
+            }
+
+            if (afisam.EndsWith(", "))
+            {
+                afisam = afisam.Substring(0, afisam.Length - 2);
+            }
+
+            MessageBox.Show("Canile iaurt sunt: " + afisam);
+        }
+
+
+        
+
+
+
+
+
+
+
+        // tema:
+        // DA 1. sa se adauge la cana caracteristica tip, de ales intre cafea, ceai, vin fiert, lapte, cacao, iaurt (combobox)
+        // DA 2. sa se adauge o prop numita data fabricarii (date time picker, tip de date date time)
+        // DA 3. se poate spala in masina de spalat vase? (adevarat sau fals)
+        // DA 4. buton - sa afiseze cana cu capacitatea cea mai mare care poate fi spalata la masina, de tip vin fiert
+        // DA 5. buton - sa se afiseze cana de tip ceai cu data fabricarii cea mai recenta
+        // DA 6. buton - sa se afiseze numele tuturor canilor de tip iaurt
+        // DA 7. in lista de cani - buton de stergere
+        // 8. identificat constructorii si vazut cand se apeleaza, schema proprie cu toata structura aplicatiei
+        // 9. tab producator - plus, minus, adaugat (forma de) producator va contine numele firmei, tzara si orasul de origine, telefon 
 
     }
 }

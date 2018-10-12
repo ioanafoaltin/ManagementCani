@@ -50,26 +50,41 @@ namespace Cana.ViewModels
             set { _spalaInMasina = value; }
         }
 
+        public String _utilaPentru;
+
+        public string UtilaPentru
+        {
+            get { return _utilaPentru; }
+            set { _utilaPentru = value; }
+        }
+
         public DelegateCommand OkCommand { get; set; }
         public MainViewModel MainViewModel { get; internal set; }
         public Window Window { get; internal set; } //ca sa am cum sa inchid fereastra cand dau pe ok
+        public AdaugaCanaViewModel()
+        {
+
+        }
+
         public void AdaugaCana()
         {
             // incearca sa intelegi cum functioneaza adaugarea, prin schema:
             CanaViewModel canaNoua = new CanaViewModel();
+            canaNoua.MainViewModel = MainViewModel;
             canaNoua.Nume = Nume;
             canaNoua.Capacitate = Capacitate;
             canaNoua.DataFabricatiei = DataFabricatiei;
             canaNoua.SpalaInMasina = SpalaInMasina;
+            canaNoua.UtilaPentru = UtilaPentru;
 
-
+            
 
             MainViewModel.Cani.Add(canaNoua);
 
             Window.Close();
         }
 
-       
+        
 
     }
 }

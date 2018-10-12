@@ -12,12 +12,20 @@
             <TextBox Text="{Binding Nume}" Margin="5" />
             <TextBlock Text="Capacitate:" Margin="5" />
             <TextBox Text="{Binding Capacitate}" Margin="5" />
+            <TextBlock Text="Pentru ce va fi folosita cana?" Margin="5" />
+            <ComboBox Margin="5" SelectedItem="{Binding UtilaPentru}">
+                <ComboBoxItem Content="Cafea" />
+                <ComboBoxItem Content="Ceai"/>
+                <ComboBoxItem Content="Vin fiert"/>
+                <ComboBoxItem Content="Lapte"/>
+                <ComboBoxItem Content="Cacao"/>
+                <ComboBoxItem Content="Iaurt"/>
+            </ComboBox>
             <TextBlock Text=" Data Fabricatiei este:"/>
             <DatePicker SelectedDate="{Binding DataFabricatiei}" DisplayDateStart="01/01/1900" />
-            <TextBlock Text="Poate cana fi spalata in masina de spalat vase?"/>
-            <CheckBox Content="Adevarat" IsChecked="{Binding SpalaInMasina}" />
-            <Button Content="OK" Command="{Binding OkCommand}" IsDefault="True"/>
-            <Button Content="Cancel" IsCancel="True"/>
+            <CheckBox Content="Cana fi spalata in masina de spalat vase" IsChecked="{Binding SpalaInMasina}" />
+            <Button Content="OK" Command="{Binding OkCommand}" IsDefault="True" Margin="5"/>
+            <Button Content="Cancel" IsCancel="True" Margin="5"/>
             
 
         </StackPanel>
