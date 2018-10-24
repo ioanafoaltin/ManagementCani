@@ -67,13 +67,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ValueConverters\StocZeroToRedBackgroundConverter.cs" />
     <Compile Include="ViewModels\AdaugaCanaViewModel.cs" />
+    <Compile Include="ViewModels\AdaugaFarfurieViewModel.cs" />
+    <Compile Include="ViewModels\AdaugaMagazinViewModel.cs" />
     <Compile Include="ViewModels\AdaugaProducatorViewModel.cs" />
     <Compile Include="ViewModels\CanaViewModel.cs" />
+    <Compile Include="ViewModels\FarfurieViewModel.cs" />
+    <Compile Include="ViewModels\MagazinViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ProducatorViewModel.cs" />
     <Compile Include="Views\AdaugaCanaView.xaml.cs">
       <DependentUpon>AdaugaCanaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdaugaFarfurieView.xaml.cs">
+      <DependentUpon>AdaugaFarfurieView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdaugaMagazinView.xaml.cs">
+      <DependentUpon>AdaugaMagazinView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AdaugaProducatorView.xaml.cs">
       <DependentUpon>AdaugaProducatorView.xaml</DependentUpon>
@@ -91,6 +102,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\AdaugaCanaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdaugaFarfurieView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdaugaMagazinView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

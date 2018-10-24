@@ -9,11 +9,11 @@
     <Grid>
         <StackPanel>
             <TextBlock Text="Nume Cana:" Margin="5" />
-            <TextBox Text="{Binding Nume}" Margin="5" />
+            <TextBox Text="{Binding Nume,UpdateSourceTrigger=PropertyChanged}" Margin="5" />
             <TextBlock Text="Capacitate:" Margin="5" />
-            <TextBox Text="{Binding Capacitate}" Margin="5" />
+            <TextBox Text="{Binding Capacitate, UpdateSourceTrigger=PropertyChanged}" Margin="5" />
             <TextBlock Text="Pentru ce va fi folosita cana?" Margin="5" />
-            <ComboBox Margin="5" SelectedItem="{Binding UtilaPentru}">
+            <ComboBox Margin="5" SelectedItem="{Binding UtilaPentru,UpdateSourceTrigger=PropertyChanged}">
                 <ComboBoxItem Content="Cafea" />
                 <ComboBoxItem Content="Ceai"/>
                 <ComboBoxItem Content="Vin fiert"/>
@@ -22,9 +22,9 @@
                 <ComboBoxItem Content="Iaurt"/>
             </ComboBox>
             <TextBlock Text=" Data Fabricatiei este:"/>
-            <DatePicker SelectedDate="{Binding DataFabricatiei}" DisplayDateStart="01/01/1900" />
-            <CheckBox Content="Cana fi spalata in masina de spalat vase" IsChecked="{Binding SpalaInMasina}" />
-            <Button Content="OK" Command="{Binding OkCommand}" IsDefault="True" Margin="5"/>
+            <DatePicker SelectedDate="{Binding DataFabricatiei,UpdateSourceTrigger=PropertyChanged}" DisplayDateStart="01/01/1900" />
+            <CheckBox Content="Cana fi spalata in masina de spalat vase" IsChecked="{Binding SpalaInMasina,UpdateSourceTrigger=PropertyChanged}" />
+            <Button Content="OK" Command="{Binding OkCommand,UpdateSourceTrigger=PropertyChanged}" IsDefault="True" Margin="5"/>
             <Button Content="Cancel" IsCancel="True" Margin="5"/>
             
 

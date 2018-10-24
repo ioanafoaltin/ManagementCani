@@ -15,9 +15,22 @@ namespace Cana.ViewModels
         //proprietati de adaugat cana noua, sters cana selectata si prop tine minte toate canile
 
         public DelegateCommand AdaugaCanaComand { get; private set; }
+        public DelegateCommand AdaugaProducatorComand { get; private set; }
+        public DelegateCommand AdaugaMagazinComand { get; set; }
+        public DelegateCommand AdaugaFarfurieComand { get; set; }
+
         public ObservableCollection<CanaViewModel> Cani { get; set; }
+        public ObservableCollection<ProducatorViewModel> Producatori { get; set; }
+        public ObservableCollection<MagazinViewModel> Magazine { get; set; }
+        public ObservableCollection<FarfurieViewModel> Farfurii { get; set; }
+
+
         //o proprietate, ca sa semnalizam ce e selectat
         public CanaViewModel SelectedItem { get; set; }
+        public ProducatorViewModel SelectedProducator { get; set; }
+        public MagazinViewModel SelectedMagazin { get; set; }
+        public FarfurieViewModel SelectedFarfurie { get; set; }
+
         public DelegateCommand DeleteCanaComand { get; set; }
         public DelegateCommand ClearComand { get; set; }
         public DelegateCommand DubleazaCanileCuAComand { get; set; }
@@ -35,11 +48,32 @@ namespace Cana.ViewModels
         public DelegateCommand CeaMaiRecentaCanaDeCeaiIComand { get; set; }
         public DelegateCommand CanileIaurtComand { get; set; }
 
+        //butoane pentrul tabul de producator
+
+        public DelegateCommand StergeProducatorComand { get; set; }
+
+        //butoane pentru tabul magazin
+
+        public DelegateCommand StergeMagazinComand { get; set; }
+
+        //butoane pentru farfurie
+
+            public DelegateCommand StergeFarfurieComand { get; set; }
 
         public MainViewModel()
         {
+
             AdaugaCanaComand = new DelegateCommand(AdaugaCanaComand_Execute);
+            AdaugaProducatorComand = new DelegateCommand(AdaugaProducatorComand_Execute);
+            AdaugaMagazinComand = new DelegateCommand(AdaugaMagazinComand_Execute);
+            AdaugaFarfurieComand = new DelegateCommand(AdaugaFarfurieComand_Execute);
+
             Cani = new ObservableCollection<CanaViewModel>();
+            Producatori = new ObservableCollection<ProducatorViewModel>();
+            Magazine = new ObservableCollection<MagazinViewModel>();
+            Farfurii = new ObservableCollection<FarfurieViewModel>();
+
+            // comenzi pentru cani
             DeleteCanaComand = new DelegateCommand(DeleteCanaComand_Execute);
             ClearComand = new DelegateCommand(ClearComand_Execute);
             DubleazaCanileCuAComand = new DelegateCommand(DubleazaCanileCuA_Execute);
@@ -56,17 +90,36 @@ namespace Cana.ViewModels
             CapacitateSpalatVinComand = new DelegateCommand(CapacitateSpalatVinComand_Execute);
             CeaMaiRecentaCanaDeCeaiIComand = new DelegateCommand(CeaMaiRecentaCanaDeCeaiIComand_Execute);
             CanileIaurtComand = new DelegateCommand(CanileIaurtComand_Execute);
+
+            //pentru producatori
+            StergeProducatorComand = new DelegateCommand(StergeProducatorComand_Execute);
+
+            //pentru magazine
+            StergeMagazinComand = new DelegateCommand(StergeMagazinComand_Execute);
+
+            //pentru farfurii
+            StergeFarfurieComand = new DelegateCommand(StergeFarfurieComand_Execute);
+
         }
 
 
         private void AdaugaCanaComand_Execute()
         {
+           /* int x;
+            x = 0;
+
+            Int32 z;
+
+            z = new Int32();*/
+
             //se construieste view modelul asta
-            AdaugaCanaViewModel adaugaCanaViewModel = new AdaugaCanaViewModel();
+            AdaugaCanaViewModel adaugaCanaViewModel = new AdaugaCanaViewModel(this);
+            AdaugaCanaViewModel x = adaugaCanaViewModel;
+
             //avem nevoie de asta ca sa avem acces la proprietatile din MainViewModel(in special cani)
-            adaugaCanaViewModel.MainViewModel = this;
+            //adaugaCanaViewModel.MainViewModel = this;
             //x=adaugaCanaViewModel
-            
+
             //am legat proprietatea okComand de metoda AdaugaCana
             adaugaCanaViewModel.OkCommand = new DelegateCommand(adaugaCanaViewModel.AdaugaCana);
 
@@ -83,6 +136,8 @@ namespace Cana.ViewModels
 
             fereastraNoua.ShowDialog();
         }
+
+        // ...Comand_Execute() pentru cani
 
         private void DeleteCanaComand_Execute()
         {
@@ -309,24 +364,95 @@ namespace Cana.ViewModels
         }
 
 
-        
+        private void AdaugaProducatorComand_Execute()
+        {
+            AdaugaProducatorViewModel adaugaProducatorViewModel = new AdaugaProducatorViewModel(this);
+
+            AdaugaProducatorViewModel x = adaugaProducatorViewModel;
+
+            adaugaProducatorViewModel.OkCommand = new DelegateCommand(adaugaProducatorViewModel.AdaugaProducator);
+
+            Window fereastraNoua = new Window();
+            fereastraNoua.Title = "Adauga un producator";
+            fereastraNoua.MinWidth = 50;
+            fereastraNoua.MinHeight = 50;
+            fereastraNoua.Width = 500;
+            fereastraNoua.Height = 500;
+            fereastraNoua.Content = new AdaugaProducatorView();
+            fereastraNoua.DataContext = adaugaProducatorViewModel;
+
+            adaugaProducatorViewModel.Window = fereastraNoua;
+
+            fereastraNoua.ShowDialog();
+        }
+
+        private void StergeProducatorComand_Execute()
+        {
+            if (Producatori.Count != 0)
+            {
+                Producatori.Remove(SelectedProducator);
+            }
+        }
 
 
+        private void AdaugaMagazinComand_Execute()
+        {
+            AdaugaMagazinViewModel adaugaMagazinViewModel = new AdaugaMagazinViewModel(this);
 
+            AdaugaMagazinViewModel x = adaugaMagazinViewModel;
 
+            adaugaMagazinViewModel.OkCommand = new DelegateCommand(adaugaMagazinViewModel.AdaugaMagazin);
 
+            Window fereastraNoua = new Window();
+            fereastraNoua.Title = "Adauga un magazin";
+            fereastraNoua.MinWidth = 50;
+            fereastraNoua.MinHeight = 50;
+            fereastraNoua.Width = 500;
+            fereastraNoua.Height = 500;
+            fereastraNoua.Content = new AdaugaMagazinView();
+            fereastraNoua.DataContext = adaugaMagazinViewModel;
 
+            adaugaMagazinViewModel.Window = fereastraNoua;
 
-        // tema:
-        // DA 1. sa se adauge la cana caracteristica tip, de ales intre cafea, ceai, vin fiert, lapte, cacao, iaurt (combobox)
-        // DA 2. sa se adauge o prop numita data fabricarii (date time picker, tip de date date time)
-        // DA 3. se poate spala in masina de spalat vase? (adevarat sau fals)
-        // DA 4. buton - sa afiseze cana cu capacitatea cea mai mare care poate fi spalata la masina, de tip vin fiert
-        // DA 5. buton - sa se afiseze cana de tip ceai cu data fabricarii cea mai recenta
-        // DA 6. buton - sa se afiseze numele tuturor canilor de tip iaurt
-        // DA 7. in lista de cani - buton de stergere
-        // 8. identificat constructorii si vazut cand se apeleaza, schema proprie cu toata structura aplicatiei
-        // 9. tab producator - plus, minus, adaugat (forma de) producator va contine numele firmei, tzara si orasul de origine, telefon 
+            fereastraNoua.ShowDialog();
+        }
 
+        private void StergeMagazinComand_Execute()
+        {
+            if (Magazine.Count != 0)
+            {
+                Magazine.Remove(SelectedMagazin);
+            }
+        }
+
+        private void AdaugaFarfurieComand_Execute()
+        {
+            AdaugaFarfurieViewModel adaugaFarfurieViewModel = new AdaugaFarfurieViewModel(this);
+
+            AdaugaFarfurieViewModel x = adaugaFarfurieViewModel;
+
+            adaugaFarfurieViewModel.OkCommand = new DelegateCommand(adaugaFarfurieViewModel.AdaugaFarfurie);
+
+            Window fereastraNoua = new Window();
+            fereastraNoua.Title = "Adauga o Farfurie";
+            fereastraNoua.MinWidth = 50;
+            fereastraNoua.MinHeight = 50;
+            fereastraNoua.Width = 500;
+            fereastraNoua.Height = 500;
+            fereastraNoua.Content = new AdaugaFarfurieView();
+            fereastraNoua.DataContext = adaugaFarfurieViewModel;
+
+            adaugaFarfurieViewModel.Window = fereastraNoua;
+
+            fereastraNoua.ShowDialog();
+        }
+
+        private void StergeFarfurieComand_Execute()
+        {
+            if (Farfurii.Count != 0)
+            {
+               Farfurii.Remove(SelectedFarfurie);
+            }
+        }
     }
 }

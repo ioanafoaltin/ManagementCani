@@ -16,7 +16,7 @@ namespace Cana.ViewModels
         {
             get { return _nume; }
             set
-            {
+           {
                 _nume = value;
 
                 //OkCommand.RaiseCanExecuteChanged();
@@ -61,9 +61,11 @@ namespace Cana.ViewModels
         public DelegateCommand OkCommand { get; set; }
         public MainViewModel MainViewModel { get; internal set; }
         public Window Window { get; internal set; } //ca sa am cum sa inchid fereastra cand dau pe ok
-        public AdaugaCanaViewModel()
-        {
 
+
+        public AdaugaCanaViewModel(MainViewModel mainVM)
+        {
+            MainViewModel = mainVM;
         }
 
         public void AdaugaCana()

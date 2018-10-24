@@ -19,15 +19,17 @@ namespace Cana
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window 
     {
         public MainWindow()
         {
             InitializeComponent();
 
             // ca sa legi MainWindow de MainViewModel:
-            DataContext = new MainViewModel();
 
+            // !! aici e creat MainViewModel
+            DataContext = new MainViewModel();
+            //grid.DataContext = null;
             // NU se mai adauga alt cod in fisieru asta. Orice eveniment care vroiai sa il adaugi aici, va avea o comanda in MainViewModel
         }
     }

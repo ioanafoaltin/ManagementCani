@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace Cana.ViewModels
 {
-    class ProducatorViewModel
+    class FarfurieViewModel
     {
         public string Nume { get; set; }
-        public string TaraDeOrigine { get; set; }
-        public string OrasulDeOrigine { get; set; }
-        public int NumarDeTelefon { get; set; }
+        public int Stoc { get; set; }
 
         public MainViewModel MainViewModel { get; set; }
-        
-        public ProducatorViewModel()
+
+        public FarfurieViewModel()
         {
 
         }
