@@ -7,66 +7,73 @@
         xmlns:valueconverters="clr-namespace:Cana.ValueConverters"
         mc:Ignorable="d"
         Title="Cana" Height="350" Width="525">
-    
+
     <Window.Resources>
         <valueconverters:StocZeroToRedBackgroundConverter x:Key="StocZeroToRedBackgroundConverter"/>
     </Window.Resources>
-    
+
     <TabControl>
         <TabItem Header="Cani">
-    <Grid HorizontalAlignment="Stretch">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
 
-        </Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
 
-        </Grid.RowDefinitions>
-        <Button Content="Adauga cana" Command="{Binding AdaugaCanaComand,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="0" Margin="5"/>
-        <Button Content="Sterge cana" Command="{Binding DeleteCanaComand}"   Grid.Column="2" Grid.Row="0" Margin="5"/>
-        <Button Content="Clear" Command="{Binding ClearComand}"  Grid.Column="3" Grid.Row="1" Margin="5"/>
-        <Button Content="Dubleaza canile cu A" Command="{Binding DubleazaCanileCuAComand,UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Grid.Row="2" Margin="5" />
-        <Button Content="Sterge canile cu E" Command="{Binding StergeCanileCuEComand,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="3" Margin="5" />
-        <Button Content="Cana cu mere" Command="{Binding CanaCuMereComand,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="2" Margin="5" />
-        <Button Content="Daca lista e mai mare de 5" Command="{Binding DacaListaEMaiMareComand}" Grid.Column="1" Grid.Row="1" Margin="5" />
-        <Button Content="Sterge canile cu A si I" Command="{Binding StergeCanileCuAsiIComand}" Grid.Column="2" Grid.Row="3" Margin="5" />
-        <Button Content="Daca sunt mai mult de 5 cani" Command="{Binding MaiMultDeCinciComand}" Grid.Column="1" Grid.Row="4" Margin="5" />
-        <Button Content="Sterge canile care contin ari" Command="{Binding StergeCaniAriComand}" Grid.Column="2" Grid.Row="4" Margin="5" />
-        <Button Content="Cani cu i" Command="{Binding CaniCuIComand}" Grid.Column="2" Grid.Row="4" Margin="5" />
-        <Button Content="Verif mai mult de 5 caractere" Command="{Binding MaiMultDeCinciCaractereComand}" Grid.Column="1" Grid.Row="5" Margin="5" />
-        <Button Content="Cel mai lung nume" Command="{Binding CelMaiLungNumeComand}" Grid.Column="2" Grid.Row="5" Margin="5" />
-        <Button Content="Numar de cani cu i" Command="{Binding NumarDeCaniCuIComand}" Grid.Column="1" Grid.Row="6" Margin="5" />
-        <Button Content="Capacitate/Spalat/Vin" Command="{Binding CapacitateSpalatVinComand}" Grid.Column="2" Grid.Row="6" Margin="5" />
-        <Button Content="Cea mai recenta cana de ceai" Command="{Binding CeaMaiRecentaCanaDeCeaiIComand}" Grid.Column="1" Grid.Row="7" Margin="5" />
-        <Button Content="Numele tuturor canilor de tip iaurt" Command="{Binding CanileIaurtComand}" Grid.Column="2" Grid.Row="7" Margin="5" />
+                </Grid.RowDefinitions>
+                <Button Content="Adauga cana" Command="{Binding AdaugaCanaComand,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="0" Margin="5"/>
+                <Button Content="Sterge cana" Command="{Binding DeleteCanaComand}"   Grid.Column="2" Grid.Row="0" Margin="5"/>
+                <Button Content="Clear" Command="{Binding ClearComand}"  Grid.Column="3" Grid.Row="1" Margin="5"/>
+                <Button Content="Dubleaza canile cu A" Command="{Binding DubleazaCanileCuAComand,UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Grid.Row="2" Margin="5" />
+                <Button Content="Sterge canile cu E" Command="{Binding StergeCanileCuEComand,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="3" Margin="5" />
+                <Button Content="Cana cu mere" Command="{Binding CanaCuMereComand,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="2" Margin="5" />
+                <Button Content="Daca lista e mai mare de 5" Command="{Binding DacaListaEMaiMareComand}" Grid.Column="1" Grid.Row="1" Margin="5" />
+                <Button Content="Sterge canile cu A si I" Command="{Binding StergeCanileCuAsiIComand}" Grid.Column="2" Grid.Row="3" Margin="5" />
+                <Button Content="Daca sunt mai mult de 5 cani" Command="{Binding MaiMultDeCinciComand}" Grid.Column="1" Grid.Row="4" Margin="5" />
+                <Button Content="Sterge canile care contin ari" Command="{Binding StergeCaniAriComand}" Grid.Column="2" Grid.Row="4" Margin="5" />
+                <Button Content="Cani cu i" Command="{Binding CaniCuIComand}" Grid.Column="1" Grid.Row="4" Margin="5" />
+                <Button Content="Verif mai mult de 5 caractere" Command="{Binding MaiMultDeCinciCaractereComand}" Grid.Column="1" Grid.Row="5" Margin="5" />
+                <Button Content="Cel mai lung nume" Command="{Binding CelMaiLungNumeComand}" Grid.Column="2" Grid.Row="5" Margin="5" />
+                <Button Content="Numar de cani cu i" Command="{Binding NumarDeCaniCuIComand}" Grid.Column="1" Grid.Row="6" Margin="5" />
+                <Button Content="Capacitate/Spalat/Vin" Command="{Binding CapacitateSpalatVinComand}" Grid.Column="2" Grid.Row="6" Margin="5" />
+                <Button Content="Cea mai recenta cana de ceai" Command="{Binding CeaMaiRecentaCanaDeCeaiIComand}" Grid.Column="1" Grid.Row="7" Margin="5" />
+                <Button Content="Numele tuturor canilor de tip iaurt" Command="{Binding CanileIaurtComand}" Grid.Column="2" Grid.Row="7" Margin="5" />
 
-        <ListBox ItemsSource="{Binding Cani,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem}" Grid.RowSpan="8">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
+                <ListBox ItemsSource="{Binding Cani,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem}" Grid.RowSpan="8">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Background="{Binding Stoc,Converter={StaticResource StocZeroToRedBackgroundConverter}}" Orientation="Horizontal">
 
-                        <TextBlock  Text="{Binding Nume,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-                        <TextBlock Text="{Binding Capacitate,UpdateSourceTrigger=PropertyChanged}" Margin="5" />
-                        <TextBlock Text="{Binding DataFabricatiei, StringFormat=d,UpdateSourceTrigger=PropertyChanged}" Margin="5" />
-                        <TextBlock Text="{Binding UtilaPentru,UpdateSourceTrigger=PropertyChanged}"  Margin="5" />
-                        <TextBlock Text="{Binding SpalaInMasina,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-                        <Button Content="Sterge cana" Command="{Binding StergeInListaComand}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-    </Grid>
+                                <StackPanel Orientation="Horizontal">
+
+                                    <TextBlock  Text="{Binding Nume,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                                    <TextBlock Text="{Binding Capacitate,UpdateSourceTrigger=PropertyChanged}" Margin="5" />
+                                    <TextBlock Text="{Binding DataFabricatiei, StringFormat=d,UpdateSourceTrigger=PropertyChanged}" Margin="5" />
+                                    <TextBlock Text="{Binding UtilaPentru,UpdateSourceTrigger=PropertyChanged}"  Margin="5" />
+                                    <TextBlock Text="{Binding SpalaInMasina,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                                    <TextBlock Text="{Binding SpalaInMasina,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                                    <TextBlock Text="{Binding SpalaInMasina,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                                    <TextBlock Text="{Binding Stoc,UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                                    <Button Content="Sterge cana" Command="{Binding StergeInListaComand}"/>
+                                </StackPanel>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
         </TabItem>
 
         <TabItem Header="Farfurii">
@@ -170,7 +177,7 @@
 
         </TabItem>
 
-        
+
 
 
     </TabControl>

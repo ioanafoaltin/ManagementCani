@@ -58,7 +58,7 @@ namespace Cana.ViewModels
 
         //butoane pentru farfurie
 
-            public DelegateCommand StergeFarfurieComand { get; set; }
+        public DelegateCommand StergeFarfurieComand { get; set; }
 
         public MainViewModel()
         {
@@ -105,12 +105,12 @@ namespace Cana.ViewModels
 
         private void AdaugaCanaComand_Execute()
         {
-           /* int x;
-            x = 0;
+            /* int x;
+             x = 0;
 
-            Int32 z;
+             Int32 z;
 
-            z = new Int32();*/
+             z = new Int32();*/
 
             //se construieste view modelul asta
             AdaugaCanaViewModel adaugaCanaViewModel = new AdaugaCanaViewModel(this);
@@ -154,7 +154,7 @@ namespace Cana.ViewModels
 
 
 
-        private void DubleazaCanileCuA_Execute()
+        /*private void DubleazaCanileCuA_Execute()
         {
             foreach (CanaViewModel cana in Cani.ToList())
             {
@@ -165,13 +165,39 @@ namespace Cana.ViewModels
                     Cani.Add(Dublura);
                 }
             }
+        }*/
+
+        private void DubleazaCanileCuA_Execute()
+        {
+
+            //var caniCuA = from Cana in Cani where Cana.Nume.Contains("a") select Cana;
+            var caniCuA = Cani.Where(c => c.Nume.Contains("a"));
+
+            foreach (var cana in caniCuA.ToList())
+            {
+                CanaViewModel Dublura = new CanaViewModel();
+                Dublura.Nume = cana.Nume;
+                Cani.Add(Dublura);
+            }
+
+
         }
+
+        /* private void StergeCanileCuEComand_Execute()
+             {
+                 foreach (CanaViewModel cana in Cani.ToList())
+                 {
+                     {
+                         Cani.Remove(cana);
+                     }
+                 }
+             }*/
 
         private void StergeCanileCuEComand_Execute()
         {
-            foreach (CanaViewModel cana in Cani.ToList())
+            var caniCuE = Cani.Where(k => k.Nume.Contains("e"));
+            foreach (var cana in caniCuE.ToList())
             {
-                if (cana.Nume.Contains("e"))
                 {
                     Cani.Remove(cana);
                 }
@@ -180,14 +206,12 @@ namespace Cana.ViewModels
 
         private void CanaCuMereComand_Execute()
         {
-            foreach (CanaViewModel cana in Cani.ToList())
+            var canaCuMere = Cani.Where(k => k.Nume.Equals("pere"));
+            foreach (var cana in canaCuMere.ToList())
             {
-                if (cana.Nume.ToLower().Equals("pere"))
-                {
-                    CanaViewModel CuMere = new CanaViewModel();
-                    CuMere.Nume = "mere";
-                    Cani.Add(CuMere);
-                }
+                CanaViewModel CuMere = new CanaViewModel();
+                CuMere.Nume = "mere";
+                Cani.Add(CuMere);
             }
         }
 
@@ -198,20 +222,28 @@ namespace Cana.ViewModels
                 Cani.Remove(Cani[0]);
                 Cani.Remove(Cani[0]);
                 Cani.Remove(Cani[0]);
-
             }
         }
 
         //1. sa se stearga toate canile care contin litera a si i
 
+        /* private void StergeCanileCuAsiIComand_Execute()
+         {
+             foreach (CanaViewModel cana in Cani.ToList())
+             {
+                 if (cana.Nume.Contains("a") && cana.Nume.Contains("i"))
+                 {
+                     Cani.Remove(cana);
+                 }
+             }
+         }*/
+
         private void StergeCanileCuAsiIComand_Execute()
         {
+            var stergeCanileCuAsiI = Cani.Where(k => k.Nume.Contains("a") && k.Nume.Contains("i"));
             foreach (CanaViewModel cana in Cani.ToList())
             {
-                if (cana.Nume.Contains("a") && cana.Nume.Contains("i"))
-                {
-                    Cani.Remove(cana);
-                }
+                Cani.Remove(cana);
             }
         }
 
@@ -229,7 +261,7 @@ namespace Cana.ViewModels
 
         //4. sa se stearga toate canile care contin textul "ari"
 
-        private void StergeCaniAriComand_Execute()
+        /*private void StergeCaniAriComand_Execute()
         {
             foreach (CanaViewModel cana in Cani.ToList())
             {
@@ -238,20 +270,34 @@ namespace Cana.ViewModels
                     Cani.Remove(cana);
                 }
             }
+        }*/
+
+        private void StergeCaniAriComand_Execute()
+        {
+            var caniCuAri = Cani.Where(k => k.Nume.Contains("ari"));
+            foreach (var cana in caniCuAri.ToList())
+            {
+                Cani.Remove(cana);
+            }
         }
 
         //6. sa se afiseze mesaj daca cana selectata contine litera i
 
+        /* private void CaniCuIComand_Execute()
+         {
+             foreach (CanaViewModel cana in Cani.ToList())
+             {
+                 if (cana.Nume.Contains("i") && cana.Equals(SelectedItem))
+                 {
+                     MessageBox.Show("Cana selectata contine litera I");
+                 }
+             }
+         }*/
+
         private void CaniCuIComand_Execute()
         {
-            foreach (CanaViewModel cana in Cani.ToList())
-            {
-                if (cana.Nume.Contains("i") && cana.Equals(SelectedItem))
-                {
-                    MessageBox.Show("Cana selectata contine litera I");
-                }
-            }
-
+            var caniCuI = Cani.Where(k => k.Nume.Contains("i"));
+            MessageBox.Show("Cana selectata contine litera I");
         }
 
 
@@ -271,59 +317,72 @@ namespace Cana.ViewModels
         //5. sa se afiseze cu mesaj cana cu cel mai lung nume (MessageBox.Show())
 
 
+        /* private void CelMaiLungNumeComand_Execute()
+         {
+             int max = 0;
+             string numeleCelMaiLung = "";
+
+             foreach (CanaViewModel cana in Cani.ToList())
+             {
+                 if (cana.Nume.Length > max)
+                 {
+                     max = cana.Nume.Length;
+                     numeleCelMaiLung = cana.Nume;
+                 }
+             }
+             MessageBox.Show("Cana " + numeleCelMaiLung + " are cel mai lung nume");
+         }*/
+
         private void CelMaiLungNumeComand_Execute()
         {
-            int max = 0;
-            string numeleCelMaiLung = "";
-
-
-            foreach (CanaViewModel cana in Cani.ToList())
-            {
-                if (cana.Nume.Length > max)
-                {
-                    max = cana.Nume.Length;
-                    numeleCelMaiLung = cana.Nume;
-                }
-            }
-            MessageBox.Show("Cana " + numeleCelMaiLung + " are cel mai lung nume");
+            var celMaiLungNume = Cani.OrderByDescending(k => k.Nume.Length).FirstOrDefault().Nume;
+            MessageBox.Show("Cana " + celMaiLungNume + " are cel mai lung nume.");
         }
 
         //3. buton care da mesaj "exista x numar de cani care contin litera i"
 
         private void NumarDeCaniCuIComand_Exectute()
         {
-            int numarCaniCuI = 0;
-
-            foreach (CanaViewModel cana in Cani.ToList())
+            int numarCaniCuI = Cani.Count(k => k.Nume.Contains("i"));
+            /*foreach (CanaViewModel cana in Cani.ToList())
             {
                 if (cana.Nume.Contains("i"))
                 {
                     numarCaniCuI = numarCaniCuI + 1;
                 }
-            }
-            MessageBox.Show("Exista " + numarCaniCuI + " cani cu i");
+            }*/
+            MessageBox.Show("Exista " + numarCaniCuI + " cani cu i.");
 
         }
+
+        /*  private void CapacitateSpalatVinComand_Execute()
+          {
+              int max = 0;
+              string canaCautata = "";
+
+              foreach (CanaViewModel cana in Cani.ToList())
+              {
+                  if ((cana.Capacitate > max) && (cana.SpalaInMasina = true) && (cana.UtilaPentru.Contains("Vin")))
+                  {
+
+                      max = cana.Capacitate;
+                      canaCautata = cana.Nume;
+                  }
+              }
+
+              MessageBox.Show("Cana cu capacitatea cea mai mare care poate fi spalata la masina de tip vin fiert este " + canaCautata);
+          }*/
 
         private void CapacitateSpalatVinComand_Execute()
         {
-            int max = 0;
-            string canaCautata = "";
+            //nu reusesc sa afisez numele
 
-            foreach (CanaViewModel cana in Cani.ToList())
-            {
-                if ((cana.Capacitate > max) && (cana.SpalaInMasina = true) && (cana.UtilaPentru.Contains("Vin")))
-                {
+            var canaMaxima = Cani.Where(k => k.UtilaPentru.Equals("Vin fiert") && k.SpalaInMasina.Equals(true)).OrderByDescending(k => k.Capacitate).FirstOrDefault();
 
-                    max = cana.Capacitate;
-                    canaCautata = cana.Nume;
-                }
-            }
-
-            MessageBox.Show("Cana cu capacitatea cea mai mare care poate fi spalata la masina de tip vin fiert este " + canaCautata);
+            MessageBox.Show("Cana cu capacitatea cea mai mare care poate fi spalata la masina de tip vin fiert este " + canaMaxima.Nume + ".");
         }
 
-        private void CeaMaiRecentaCanaDeCeaiIComand_Execute()
+        /*private void CeaMaiRecentaCanaDeCeaiIComand_Execute()
         {
             DateTime celMaiRecent = new DateTime(0001, 01, 01, 0, 0, 0);
             string afisam = "";
@@ -338,14 +397,34 @@ namespace Cana.ViewModels
                 }
             }
             MessageBox.Show("Cea mai recenta cana de ceai este: " + afisam);
+        }*/
+
+        private void CeaMaiRecentaCanaDeCeaiIComand_Execute()
+        {
+            //DateTime celMaiRecent = new DateTime(0001, 01, 01, 0, 0, 0);
+            //string afisam = "";
+            var ceaMaiRecentaCanaDeCeai = Cani.Where(k => k.UtilaPentru.Equals("Ceai")).OrderByDescending(k => k.DataFabricatiei).FirstOrDefault();
+            //foreach (CanaViewModel cana in Cani.ToList())
+            //{
+            //    int rezultat = DateTime.Compare(celMaiRecent, cana.DataFabricatiei);
+            //    if (rezultat < 0 && (cana.UtilaPentru.Contains("Ceai")))
+            //    {
+            //        celMaiRecent = cana.DataFabricatiei;
+            //        afisam = cana.Nume;
+            //    }
+            //}
+            MessageBox.Show("Cea mai recenta cana de ceai este: " + ceaMaiRecentaCanaDeCeai.Nume);
         }
 
         private void CanileIaurtComand_Execute()
         {
-            string canileIaurt = "";
-            string afisam = "";
+            // string canileIaurt = "";
+            // string afisam = "";
+            var toateCanileCuIaurt = Cani.Where(k => k.UtilaPentru.Equals("Iaurt")).Select(k => k.Nume);
 
-            foreach (CanaViewModel cana in Cani.ToList())
+            string afisam = String.Join(", ", toateCanileCuIaurt);
+
+            /*foreach (CanaViewModel cana in Cani.ToList())
             {
                 if (cana.UtilaPentru.Contains("Iaurt"))
                 {
@@ -358,7 +437,7 @@ namespace Cana.ViewModels
             if (afisam.EndsWith(", "))
             {
                 afisam = afisam.Substring(0, afisam.Length - 2);
-            }
+            }*/
 
             MessageBox.Show("Canile iaurt sunt: " + afisam);
         }
@@ -451,7 +530,7 @@ namespace Cana.ViewModels
         {
             if (Farfurii.Count != 0)
             {
-               Farfurii.Remove(SelectedFarfurie);
+                Farfurii.Remove(SelectedFarfurie);
             }
         }
     }

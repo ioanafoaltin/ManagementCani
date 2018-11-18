@@ -13,17 +13,20 @@
             <TextBlock Text="Capacitate:" Margin="5" />
             <TextBox Text="{Binding Capacitate, UpdateSourceTrigger=PropertyChanged}" Margin="5" />
             <TextBlock Text="Pentru ce va fi folosita cana?" Margin="5" />
-            <ComboBox Margin="5" SelectedItem="{Binding UtilaPentru,UpdateSourceTrigger=PropertyChanged}">
-                <ComboBoxItem Content="Cafea" />
+            <ComboBox Margin="5" SelectedValue="{Binding UtilaPentru}"
+                      ItemsSource="{Binding ToateValorilePosibilePentruUtilePentru}">
+                <!--<ComboBoxItem Content="Cafea" />
                 <ComboBoxItem Content="Ceai"/>
                 <ComboBoxItem Content="Vin fiert"/>
                 <ComboBoxItem Content="Lapte"/>
                 <ComboBoxItem Content="Cacao"/>
-                <ComboBoxItem Content="Iaurt"/>
+                <ComboBoxItem Content="Iaurt"/>-->
             </ComboBox>
             <TextBlock Text=" Data Fabricatiei este:"/>
             <DatePicker SelectedDate="{Binding DataFabricatiei,UpdateSourceTrigger=PropertyChanged}" DisplayDateStart="01/01/1900" />
             <CheckBox Content="Cana fi spalata in masina de spalat vase" IsChecked="{Binding SpalaInMasina,UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="Stoc:" Margin="5" />
+            <TextBox Text="{Binding Stoc,UpdateSourceTrigger=PropertyChanged}" Margin="5" />
             <Button Content="OK" Command="{Binding OkCommand,UpdateSourceTrigger=PropertyChanged}" IsDefault="True" Margin="5"/>
             <Button Content="Cancel" IsCancel="True" Margin="5"/>
             

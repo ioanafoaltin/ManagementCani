@@ -14,6 +14,7 @@ namespace Cana.ViewModels
         public DateTime DataFabricatiei { get; set; }
         public bool SpalaInMasina { get; set; }
         public string UtilaPentru { get; set; }
+        public int Stoc { get; set; }
 
         public MainViewModel MainViewModel { get; set; }
 
