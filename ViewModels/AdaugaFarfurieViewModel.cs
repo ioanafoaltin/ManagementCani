@@ -36,6 +36,20 @@ namespace Cana.ViewModels
             }
         }
 
+        private string _culoare;
+        public string Culoare
+        {
+            get { return _culoare; }
+            set { _culoare = value; }
+        }
+
+        public int _diametru;
+        public int Diametru
+        {
+            get { return _diametru; }
+            set { _diametru = value; }
+        }
+
         public DelegateCommand OkCommand { get; set; }
         public DelegateCommand StergeMagazinComand { get; set; }
         public MainViewModel MainViewModel { get; internal set; }
@@ -49,6 +63,8 @@ namespace Cana.ViewModels
             farfurieNoua.MainViewModel = MainViewModel;
             farfurieNoua.Nume = Nume;
             farfurieNoua.Stoc = Stoc;
+            farfurieNoua.Culoare = Culoare;
+            farfurieNoua.Diametru = Diametru;
 
             MainViewModel.Farfurii.Add(farfurieNoua);
 

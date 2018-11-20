@@ -10,6 +10,8 @@ namespace Cana.ViewModels
     {
         public string Nume { get; set; }
         public int Stoc { get; set; }
+        public string Culoare { get; set; }
+        public int Diametru { get; set; }
 
         public MainViewModel MainViewModel { get; set; }
 

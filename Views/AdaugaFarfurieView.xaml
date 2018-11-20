@@ -12,6 +12,10 @@
             <TextBox Text="{Binding Nume,UpdateSourceTrigger=PropertyChanged}" Margin="5" />
             <TextBlock Text="Stoc:" Margin="5" />
             <TextBox Text="{Binding Stoc,UpdateSourceTrigger=PropertyChanged}" Margin="5" />
+            <TextBlock Text="Culoare:" Margin="5" />
+            <TextBox Text="{Binding Culoare,UpdateSourceTrigger=PropertyChanged}" Margin="5" />
+            <TextBlock Text="Diametru:" Margin="5" />
+            <TextBox Text="{Binding Diametru,UpdateSourceTrigger=PropertyChanged}" Margin="5" />
             <Button Content="OK" Command="{Binding OkCommand}" IsDefault="True" Margin="5"/>
             <Button Content="Cancel" IsCancel="True" Margin="5"/>
 

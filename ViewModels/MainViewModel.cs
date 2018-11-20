@@ -47,10 +47,17 @@ namespace Cana.ViewModels
         public DelegateCommand CapacitateSpalatVinComand { get; set; }
         public DelegateCommand CeaMaiRecentaCanaDeCeaiIComand { get; set; }
         public DelegateCommand CanileIaurtComand { get; set; }
+        public DelegateCommand CanaCeaMaiLungaCuI { get; set; }
+        public DelegateCommand CelMaiLungNumeDeFarfurieComand { get; set; }
+        public DelegateCommand MaiMultDe50FarfuriiComand { get; set; }
+        public DelegateCommand CelMaiLungNumeDeFarfurieCuHComand { get; set; }
+        public DelegateCommand CeaMaiLungaFarfurieGriComand { get; set; }
+        public DelegateCommand DMicGri100Comand { get; set; }
 
         //butoane pentrul tabul de producator
 
         public DelegateCommand StergeProducatorComand { get; set; }
+        public DelegateCommand NumeNumarRoComand { get; set; }
 
         //butoane pentru tabul magazin
 
@@ -59,6 +66,7 @@ namespace Cana.ViewModels
         //butoane pentru farfurie
 
         public DelegateCommand StergeFarfurieComand { get; set; }
+        public DelegateCommand DiametruMareStoc100Comand { get; set; }
 
         public MainViewModel()
         {
@@ -90,15 +98,23 @@ namespace Cana.ViewModels
             CapacitateSpalatVinComand = new DelegateCommand(CapacitateSpalatVinComand_Execute);
             CeaMaiRecentaCanaDeCeaiIComand = new DelegateCommand(CeaMaiRecentaCanaDeCeaiIComand_Execute);
             CanileIaurtComand = new DelegateCommand(CanileIaurtComand_Execute);
+            CanaCeaMaiLungaCuI = new DelegateCommand(CanaCeaMaiLungaCuI_Execute);
 
             //pentru producatori
             StergeProducatorComand = new DelegateCommand(StergeProducatorComand_Execute);
+            NumeNumarRoComand = new DelegateCommand(NumeNumarRoComand_Execute);
 
             //pentru magazine
             StergeMagazinComand = new DelegateCommand(StergeMagazinComand_Execute);
 
             //pentru farfurii
             StergeFarfurieComand = new DelegateCommand(StergeFarfurieComand_Execute);
+            CelMaiLungNumeDeFarfurieComand = new DelegateCommand(CelMaiLungNumeDeFarfurieComand_Execute);
+            MaiMultDe50FarfuriiComand = new DelegateCommand(MaiMultDe50FarfuriiComand_Execute);
+            CelMaiLungNumeDeFarfurieCuHComand = new DelegateCommand(CelMaiLungNumeDeFarfurieCuHComand_Execute);
+            CeaMaiLungaFarfurieGriComand = new DelegateCommand(CeaMaiLungaFarfurieGriComand_Execute);
+            DiametruMareStoc100Comand = new DelegateCommand(DiametruMareStoc100Comand_Execute);
+            DMicGri100Comand = new DelegateCommand(DMicGri100Comand_Execute);
 
         }
 
@@ -401,18 +417,7 @@ namespace Cana.ViewModels
 
         private void CeaMaiRecentaCanaDeCeaiIComand_Execute()
         {
-            //DateTime celMaiRecent = new DateTime(0001, 01, 01, 0, 0, 0);
-            //string afisam = "";
             var ceaMaiRecentaCanaDeCeai = Cani.Where(k => k.UtilaPentru.Equals("Ceai")).OrderByDescending(k => k.DataFabricatiei).FirstOrDefault();
-            //foreach (CanaViewModel cana in Cani.ToList())
-            //{
-            //    int rezultat = DateTime.Compare(celMaiRecent, cana.DataFabricatiei);
-            //    if (rezultat < 0 && (cana.UtilaPentru.Contains("Ceai")))
-            //    {
-            //        celMaiRecent = cana.DataFabricatiei;
-            //        afisam = cana.Nume;
-            //    }
-            //}
             MessageBox.Show("Cea mai recenta cana de ceai este: " + ceaMaiRecentaCanaDeCeai.Nume);
         }
 
@@ -532,6 +537,73 @@ namespace Cana.ViewModels
             {
                 Farfurii.Remove(SelectedFarfurie);
             }
+        }
+
+
+        //cana cu numele cel mai lung care contine litera I
+        private void CanaCeaMaiLungaCuI_Execute()
+        {
+            //var ceaMaiRecentaCanaDeCeai = Cani.Where(k => k.UtilaPentru.Equals("Ceai")).OrderByDescending(k => k.DataFabricatiei).FirstOrDefault();
+            //MessageBox.Show("Cea mai recenta cana de ceai este: " + ceaMaiRecentaCanaDeCeai.Nume);
+            var canaCeaMaiLungaCuI = Cani.Where(k => k.Nume.Contains("i")).OrderByDescending(k => k.Nume.Length).FirstOrDefault();
+            MessageBox.Show("Cana cu numele cel mai lung care contine litera I este " + canaCeaMaiLungaCuI.Nume + ".");
+        }
+
+        private void CelMaiLungNumeDeFarfurieComand_Execute()
+        {
+            var celMaiLungNumeDeFarfurie = Farfurii.OrderByDescending(k => k.Nume.Length).FirstOrDefault();
+            MessageBox.Show("Farfuria cu numele cel mai lung este" + celMaiLungNumeDeFarfurie.Nume + ".");
+        }
+
+        //afiseaza lista de farfurii cu stoc mai mare de 50
+        private void MaiMultDe50FarfuriiComand_Execute()
+        {
+            var stocMaiMareDe50 = Farfurii.Where(k => k.Stoc > 50).Select(k => k.Nume);
+            string afisam = String.Join(", ", stocMaiMareDe50);
+            MessageBox.Show("Farfuriile cu stocuri mai mari de 50 sunt " + afisam + ".");
+        }
+
+        private void CelMaiLungNumeDeFarfurieCuHComand_Execute()
+        {
+            var celMaiLungNumeDeFarfurieCuH = Farfurii.Where(k => k.Nume.Contains("h")).OrderByDescending(k => k.Nume.Length).FirstOrDefault();
+
+            if (celMaiLungNumeDeFarfurieCuH != null)
+            {
+                MessageBox.Show("Farfura cu cel mai lung nume care contine litera H este " + celMaiLungNumeDeFarfurieCuH.Nume + ".");
+            }
+            else
+            {
+                MessageBox.Show("Nu exista farfurii care indeplinesc aceste conditii");
+            }
+        }
+
+        // farfuria gri cu numele cel mai lung
+        private void CeaMaiLungaFarfurieGriComand_Execute()
+        {
+            var ceaMaiLungaFarfuGri = Farfurii.Where(k => k.Nume.Contains("gri")).OrderByDescending(k => k.Nume.Length).FirstOrDefault();
+            MessageBox.Show("Farfuria gri cu numele cel mai lung este " + ceaMaiLungaFarfuGri.Nume + ".");
+        }
+
+        //numele si numarul de telefon, daca producatorul e romanesc
+        public void NumeNumarRoComand_Execute()
+        {
+            var numeNumarRo = Producatori.Where(k => k.TaraDeOrigine.Equals("Romania")).Select(k => k.Nume + " " + k.NumarDeTelefon);
+            var final = string.Join(", ", numeNumarRo);
+            MessageBox.Show("Numele si numarul de telefon al producatorilor din Romania este: " + final + ".");
+        }
+
+        //farfura cu diametrul cel mai mare cu stoc peste 100
+        public void DiametruMareStoc100Comand_Execute()
+        {
+            var diametruStoc100 = Farfurii.Where(k => k.Diametru > 100).OrderByDescending(k => k.Diametru).FirstOrDefault();
+            MessageBox.Show("Farcuria cu diametrul cel mai mare cu stoc peste 100 este " + diametruStoc100.Nume + ".");
+        }
+
+        //farfuria gri cu cel mai mic diametru cu stoc mai mare de 100
+        public void DMicGri100Comand_Execute()
+        {
+            var dMicGri100 = Farfurii.Where(k => k.Culoare.Equals("gri") && k.Stoc>100 ).OrderBy(k => k.Diametru).LastOrDefault();
+            MessageBox.Show("Farfuria gri cu cel mai mic diametru cu stoc mai mare de 100 este " + dMicGri100.Nume + ".");
         }
     }
 }
